@@ -7,17 +7,11 @@ import re
 
 def mapper():
     pattern = re.compile(r"[a-z]{2}")
-    try:
     for row in csv.reader(iter(sys.stdin.readline, '')):
-        try:
             content = row[2]
             for match in pattern.finditer(content.lower()):
                 word = match.group(0)
                 print("{}\t{}".format(word, 1))
-        except:
-            continue
-    except:
-        pass
 
 def reducer():
     word, number = next(sys.stdin).split('\t')
